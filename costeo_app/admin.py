@@ -3,11 +3,8 @@ from django.contrib import admin
 from.models import Aparrel, Proyecto, Task
 # Register your models here.
 
-#version corta
-# admin.site.register(Aparrel)
 
-#version configurable
-@admin.register(Aparrel)
+#version configurable@admin.register(Aparrel)
 class AparrelAdmin(admin.ModelAdmin):
     list_display = (
         'id',
@@ -26,6 +23,9 @@ class AparrelAdmin(admin.ModelAdmin):
                     'nombreSistema',
                     'descripcionColor',
     )
+
+#version corta
+# admin.site.register(Aparrel)
 
 admin.site.register(Proyecto)
 

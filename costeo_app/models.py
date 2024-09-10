@@ -22,3 +22,7 @@ class Task(models.Model):
     titulo = models.CharField(max_length=50)
     descripcion = models.TextField()
     proyecto = models.ForeignKey(Proyecto, on_delete=models.CASCADE)
+
+    #(metodo) funcion que permite extender, mostrar algo en la interfaz
+    def __str__(self):
+        return self.titulo
