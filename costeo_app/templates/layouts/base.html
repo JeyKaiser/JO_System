@@ -12,7 +12,7 @@
         <img src="{% static "yourCompany.jpg" %}" alt="" width="70" >
 
         <h1>BASE DE DATOS JO</h1>
-        <nav>
+        <nav class="navbar container">
             <ul>
                 <li><a href= "{% url 'index' %}" >        Inicio</a></li>
                 <li><a href= "{% url 'about' %}" >        Sobre Nosotros</a></li>
@@ -24,7 +24,7 @@
         </nav>
     </header>
     
-    <div class="content">
+    <div class="container">
         {% block content %}
         <!-- El contenido específico de cada página irá aquí -->
         {% endblock %}

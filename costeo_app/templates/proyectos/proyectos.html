@@ -12,9 +12,12 @@
         <h1>Mis Proyectos</h1>
         
         {% for proyectos in proyecto %}
-        <div>
-            <h2>{{ proyectos.nombre_proyecto }}</h2>
-        </div>
+        
+        <article class="card">
+            <a href="">
+                <h2>{{ proyectos.nombre_proyecto }}</h2>
+            </a>
+        </article>
         {% endfor %}    
     
     {% endblock %}

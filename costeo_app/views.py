@@ -47,10 +47,19 @@ def create_project(request):
         })
         #print(request.GET)                                # Esto no genera error, solo imprime el diccionario        
     else:
-        nombreProject= request.POST.get('nombre', '')            # Devuelve '' si 'titulo' no está en la solicitud
+        nombreProject = request.POST.get('nombre', '')            # Devuelve '' si 'titulo' no está en la solicitud
         Proyecto.objects.create(nombre_proyecto= nombreProject)
         return redirect('proyecto')
     
+def project_detail(request, id):
+    proyecto = get_object_or_404(Proyecto, id=id)
+    tasks =Task.objects.all()
+    print(proyecto)
+    print(tasks)
+    return render(request, 'proyectos/detail.html', {
+        'proyecto': proyecto,
+        'tasks': tasks
+    })
 
 
 
