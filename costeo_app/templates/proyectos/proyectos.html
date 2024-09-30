@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyectos</title>
+</head>
+<body>
+    {% extends "layouts/base.html" %}
+
+    {% block content %}
+        <h1>Mis Proyectos</h1>
+        
+        {% for proyectos in proyecto %}
+        <div>
+            <h2>{{ proyectos.nombre_proyecto }}</h2>
+        </div>
+        {% endfor %}    
+    
+    {% endblock %}
+    
+</body>
+</html>

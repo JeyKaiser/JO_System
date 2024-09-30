@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tareas</title>
+</head>
+<body>
+    {% extends "layouts/base.html" %}
+    {% block content %}
+        <h1>Mis Tareas</h1>
+    
+        <!--este es un comentario de html que si se ve-->
+        {% for tareas in tarea %}
+        <div>            
+            {# este es un comentario en jinja, no se ve#}
+            <h2>{% if tareas.done == False %} 
+                    🕑 
+                {% else %}
+                    ✅ 
+                {% endif %} {{ tareas.titulo }}
+            </h2>
+
+            <h2>{{ tareas.descripcion }}</h2>
+            <h3>Nombre proyecto: {{ tareas.proyecto_id }}</h3>
+            
+        </div>
+    {% endfor %}
+    
+    {% endblock content %}
+
+</body>
+</html>

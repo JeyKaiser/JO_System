@@ -1,0 +1,37 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Django Project</title>
+    <link rel="stylesheet" href="{% static 'styles/main.css' %}">
+</head>
+<body>
+    <header>        
+        <img src="{% static "yourCompany.jpg" %}" alt="" width="70" >
+
+        <h1>BASE DE DATOS JO</h1>
+        <nav>
+            <ul>
+                <li><a href= "{% url 'index' %}" >        Inicio</a></li>
+                <li><a href= "{% url 'about' %}" >        Sobre Nosotros</a></li>
+                <li><a href= "{% url 'proyecto' %}" >     Proyectos</a></li>
+                <li><a href= "{% url 'tasks' %}" >        Tareas</a></li>
+                <li><a href= "{% url 'create_task' %}" >  Nueva Tarea</a></li>
+                <li><a href= "{% url 'create_project' %}">Nuevo Proyecto</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <div class="content">
+        {% block content %}
+        <!-- El contenido específico de cada página irá aquí -->
+        {% endblock %}
+    </div>
+
+    <footer>
+        <p>© 2024 Diseño Johanna Ortiz</p>
+    </footer>
+</body>
+</html>
