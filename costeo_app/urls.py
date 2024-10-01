@@ -4,6 +4,7 @@ from . import views
 #coments
 urlpatterns = [
     path('', views.index, name='index'),
+    path('signup/', views.signup, name='signup'),
     path('about/', views.about, name='about'),
     path('proyecto/', views.proyecto, name='proyecto'),
     path('proyecto/<int:id>', views.project_detail, name='project_detail'),

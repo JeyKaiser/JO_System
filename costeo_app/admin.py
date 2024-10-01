@@ -1,6 +1,6 @@
 #desde este archivo puedo añadir los modelos dentro del panel del administrador cuando ejecuto (python manage.py createsuperuser)
 from django.contrib import admin
-from.models import Aparrel, Proyecto, Task
+from.models import Aparrel, Proyecto, Task, CustomUser
 # Register your models here.
 
 
@@ -30,4 +30,6 @@ class AparrelAdmin(admin.ModelAdmin):
 admin.site.register(Proyecto)
 
 admin.site.register(Task)
+
+admin.site.register(CustomUser)
 

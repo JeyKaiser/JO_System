@@ -1,13 +1,18 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse, JsonResponse
-from .models import Proyecto, Task
+from .models import Proyecto, Task, CustomUser
 from .forms import CreateNewTask, CreateNewProject
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import login
+from django.contrib import messages
+from django.contrib.auth.models import User
+
 
 # Create your views here.
 def index(request):
-    title = 'Django Course!!'
+    title = 'Django-Course!!'
     return render(request, "index.html",{
-        'title': title
+        'mititle': title
     })
 
 def about(request):
@@ -17,20 +22,20 @@ def about(request):
 def proyecto(request):
     proyectos = list(Proyecto.objects.values())
     return render(request, 'proyectos/proyectos.html',{
-        'proyecto': proyectos
+        'miproyecto': proyectos
     })
     
 def tasks(request):
     tareas = list(Task.objects.values())
     return render(request, 'tareas/tasks.html',{
-        'tarea': tareas
+        'mitarea': tareas
     })
     
 def create_task(request):
     if request.method == 'GET':
         #show interface
         return render(request, 'tareas/create_task.html', {
-        'form': CreateNewTask()
+        'miFormTask': CreateNewTask()
         })
         #print(request.GET)                                # Esto no genera error, solo imprime el diccionario        
     else:
@@ -43,7 +48,7 @@ def create_project(request):
     if request.method == 'GET':
         #show interface
         return render(request, 'proyectos/create_project.html', {
-        'form': CreateNewProject()
+        'miFormProject': CreateNewProject()
         })
         #print(request.GET)                                # Esto no genera error, solo imprime el diccionario        
     else:
@@ -57,11 +62,44 @@ def project_detail(request, id):
     print(proyecto)
     print(tasks)
     return render(request, 'proyectos/detail.html', {
-        'proyecto': proyecto,
-        'tasks': tasks
+        'detailProject': proyecto,
+        'detailTask': tasks
     })
 
+def signup(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        print(request.POST)
+        if request.POST['password1'] == request.POST['password2']:
+            try:
+                user = CustomUser.objects.create_user(username= request.POST['username'],
+                                                password= request.POST['password1'])
+                user.save()
+                login(request, user)  # Iniciar sesión automáticamente después del registro
+                messages.success(request, 'Cuenta creada con éxito.')
+                return redirect('index')  # Redirigir a la página de inicio
+            except:
+                messages.error(request, 'Error en la creación de la cuenta.')
+        else:
+            messages.error(request, 'Error en la creación de la cuenta.')
+    else:
+        form = UserCreationForm()
+    return render(request, 'signup.html', {'miSignup': form})
 
+##def signup(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        print(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)  # Iniciar sesión automáticamente después del registro
+            messages.success(request, 'Cuenta creada con éxito.')
+            return redirect('index')  # Redirigir a la página de inicio
+        else:
+            messages.error(request, 'Error en la creación de la cuenta.')
+    else:
+        form = UserCreationForm()
+    return render(request, 'signup.html', {'miSignup': form})
 
 
     #tarea = get_object_or_404(Task, id=i)

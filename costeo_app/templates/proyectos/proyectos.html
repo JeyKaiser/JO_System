@@ -11,7 +11,7 @@
     {% block content %}
         <h1>Proyectos</h1>
         
-        {% for proyectos in proyecto %}
+        {% for proyectos in miproyecto %}
         
         <article class="card">
             <a href="{% url 'project_detail' proyectos.id %}">

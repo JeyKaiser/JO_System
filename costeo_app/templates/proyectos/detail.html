@@ -10,9 +10,9 @@
 
     {% block content %}
         <h1>Detalles del Proyecto</h1>
-        <h2>{{ proyecto }}</h2>
+        <h2>{{ detailProject }}</h2>
 
-        {%for tasks in tasks %}
+        {%for tasks in detailTask %}
             <div class= "card">
                 <h2>
                     {{tasks.titulo}}

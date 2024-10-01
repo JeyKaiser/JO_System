@@ -12,7 +12,7 @@
         <h1>Crear Nuevo Proyecto</h1>
         <form method="POST" action="">
             {% csrf_token %}
-            {{ form.as_p}}
+            {{ miFormProject.as_p}}
             <button> 
                 Save
             </button>

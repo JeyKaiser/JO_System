@@ -13,7 +13,6 @@ class Aparrel(models.Model):
 
 class Proyecto(models.Model):
     nombre_proyecto = models.CharField(max_length=50)
-
     #(metodo) funcion que permite extender, mostrar algo en la interfaz superuser
     def __str__(self):
         return self.nombre_proyecto
@@ -21,18 +20,18 @@ class Proyecto(models.Model):
 class Task(models.Model):
     titulo = models.CharField(max_length=200)
     descripcion = models.TextField()
-<<<<<<< HEAD
     proyecto = models.ForeignKey(Proyecto, on_delete=models.CASCADE)    
     done = models.BooleanField(default=False) 
     
     def __str__(self):
         return self.titulo
-    
-    
-=======
-    proyecto = models.ForeignKey(Proyecto, on_delete=models.CASCADE)
 
-    #(metodo) funcion que permite extender, mostrar algo en la interfaz
+class CustomUser(models.Model):
+    username = models.CharField(max_length=200, unique=True)
+    email = models.EmailField(max_length=255, unique=True)
+    password = models.CharField(max_length=200)
+    is_active = models.BooleanField(default=True)
+    is_admin = models.BooleanField(default=False)
+
     def __str__(self):
-        return self.titulo
->>>>>>> a05cb17c6ec46dfe103c48b6412e2ee8b300e8a1
+        return self.username
