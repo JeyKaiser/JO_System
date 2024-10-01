@@ -53,7 +53,7 @@ def create_project(request):
     
 def project_detail(request, id):
     proyecto = get_object_or_404(Proyecto, id=id)
-    tasks =Task.objects.all()
+    tasks =Task.objects.filter(proyecto_id=id)
     print(proyecto)
     print(tasks)
     return render(request, 'proyectos/detail.html', {

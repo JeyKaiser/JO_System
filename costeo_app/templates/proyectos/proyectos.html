@@ -9,12 +9,12 @@
     {% extends "layouts/base.html" %}
 
     {% block content %}
-        <h1>Mis Proyectos</h1>
+        <h1>Proyectos</h1>
         
         {% for proyectos in proyecto %}
         
         <article class="card">
-            <a href="">
+            <a href="{% url 'project_detail' proyectos.id %}">
                 <h2>{{ proyectos.nombre_proyecto }}</h2>
             </a>
         </article>

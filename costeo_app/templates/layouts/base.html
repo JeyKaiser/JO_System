@@ -9,26 +9,27 @@
 </head>
 <body>
     <header>        
-        <img src="{% static "yourCompany.jpg" %}" alt="" width="70" >
-
+        <img src="{% static "yourCompany.jpg" %}" alt="" width="70" >        
         <h1>BASE DE DATOS JO</h1>
-        <nav class="navbar container">
-            <ul>
-                <li><a href= "{% url 'index' %}" >        Inicio</a></li>
-                <li><a href= "{% url 'about' %}" >        Sobre Nosotros</a></li>
-                <li><a href= "{% url 'proyecto' %}" >     Proyectos</a></li>
-                <li><a href= "{% url 'tasks' %}" >        Tareas</a></li>
-                <li><a href= "{% url 'create_task' %}" >  Nueva Tarea</a></li>
-                <li><a href= "{% url 'create_project' %}">Nuevo Proyecto</a></li>
-            </ul>
-        </nav>
     </header>
-    
-    <div class="container">
-        {% block content %}
-        <!-- El contenido específico de cada página irá aquí -->
-        {% endblock %}
-    </div>
+
+    <nav class="navbar container">
+        <ul>
+            <li><a href= "{% url 'index' %}" >        Inicio</a></li>
+            <li><a href= "{% url 'about' %}" >        Sobre Nosotros</a></li>
+            <li><a href= "{% url 'proyecto' %}" >     Proyectos</a></li>
+            <li><a href= "{% url 'tasks' %}" >        Tareas</a></li>
+            <li><a href= "{% url 'create_task' %}" >  Nueva Tarea</a></li>
+            <li><a href= "{% url 'create_project' %}">Nuevo Proyecto</a></li>
+        </ul>
+    </nav>
+    <main class= "container">
+        <div>
+            {% block content %}
+            <!-- El contenido específico de cada página irá aquí -->
+            {% endblock %}
+        </div>
+    </main>    
 
     <footer>
         <p>© 2024 Diseño Johanna Ortiz</p>

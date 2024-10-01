@@ -5,7 +5,7 @@ body{
 .navbar ul {
     display: flex;
     justify-content: space-between;
-    background: #dfca8c;
+    background: #ccc790;
     padding: 10px 10px;
 }
 
@@ -24,9 +24,9 @@ body{
 
 .container {
     max-width: 1200px;
-    background: rgb(234, 136, 71);
+    background: #e0daa9;
     margin: auto;
-    padding: 20px 0;    
+    padding: 20px 10px;    
 }
 
 .card {
@@ -34,4 +34,15 @@ body{
     color: black;
     padding: 5px;
     margin-bottom: 2px;
+}
+
+input.input, textarea.input{
+    background: wheat;
+    padding: 10px;
+    text-align: center;
+    display: block;
+}
+
+textarea.input{
+    text-align: left;
 }
