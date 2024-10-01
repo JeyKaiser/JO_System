@@ -19,7 +19,7 @@ class Proyecto(models.Model):
         return self.nombre_proyecto
 
 class Task(models.Model):
-    titulo = models.CharField(max_length=50)
+    titulo = models.CharField(max_length=200)
     descripcion = models.TextField()
     proyecto = models.ForeignKey(Proyecto, on_delete=models.CASCADE)    
     done = models.BooleanField(default=False) 
