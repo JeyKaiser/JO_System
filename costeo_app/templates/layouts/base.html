@@ -16,11 +16,16 @@
     <nav class="navbar container">
         <ul>
             <li><a href= "{% url 'index' %}" >        Inicio</a></li>
-            <li><a href= "{% url 'about' %}" >        Sobre Nosotros</a></li>
             <li><a href= "{% url 'proyecto' %}" >     Proyectos</a></li>
             <li><a href= "{% url 'tasks' %}" >        Tareas</a></li>
             <li><a href= "{% url 'create_task' %}" >  Nueva Tarea</a></li>
             <li><a href= "{% url 'create_project' %}">Nuevo Proyecto</a></li>
+            <li><a href= "{% url 'about' %}" >        Sobre Nosotros</a></li>
+            {% if user.is_authenticated %}
+                <li><a href= "{% url 'logout' %}" >       Salir</a></li>
+            {% else %}
+                <li><a href= "{% url 'signup' %}" >       Iniciar</a></li>
+            {% endif %}
         </ul>
     </nav>
     <main class= "container">
@@ -32,7 +37,7 @@
     </main>    
 
     <footer>
-        <p>© 2024 Diseño Johanna Ortiz</p>
+        <p>© 2024 Diseño JO</p>
     </footer>
 </body>
 </html>

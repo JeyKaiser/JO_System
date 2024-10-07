@@ -3,15 +3,16 @@ from . import views
 
 #coments
 urlpatterns = [
-    path('', views.index, name='index'),
-    path('signup/', views.signup, name='signup'),
-    path('about/', views.about, name='about'),
+    path('', views.signup, name='signup'),
+    path('index/', views.index, name='index'),
     path('proyecto/', views.proyecto, name='proyecto'),
     path('proyecto/<int:id>', views.project_detail, name='project_detail'),
     path('tasks/', views.tasks, name='tasks'),
     path('create_task/', views.create_task, name='create_task'),
-    path('create_project/', views.create_project, name='create_project'),
-    path('hello/<str:username>', views.hello, name='hello'),
-    #path('tasks/<int:id>', views.tasks),
+    path('create_project/', views.create_project, name='create_project'),   
+    path('about/', views.about, name='about'),
+    path('logout/', views.signout, name='logout'),
+    path('signin/', views.signin, name='signin'),  
+    
 ]
 

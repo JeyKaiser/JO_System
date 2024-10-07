@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Document</title>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles/main.css' %}"> <!-- Asegúrate de enlazar el archivo CSS correctamente -->
+</head>
+<body>
+    {{error}}
+    <form class='form-container' action="{% url 'signin' %}" method='POST'>
+        {% csrf_token %}
+        {{miSignin.as_p}}
+        <button>
+            Ingresar
+        </button>
+        
+    </form>
+</body>
+</html>

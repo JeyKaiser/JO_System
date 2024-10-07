@@ -1,11 +1,17 @@
-body{
-    background: #e5e4df;
+body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: #f4f1ec; /* Color pastel tierra */
+    margin: 0;
+    padding: 0;    
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Altura del viewport */
 }
 
 .navbar ul {
     display: flex;
     justify-content: space-between;
-    background: #ccc790;
+    background: #5e642e;
     padding: 10px 10px;
 }
 
@@ -45,4 +51,78 @@ input.input, textarea.input{
 
 textarea.input{
     text-align: left;
+}
+
+/* Contenedor del formulario */
+.form-container {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 2rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+/* Estilos para el título */
+h1 {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #5b3921; /* Color tierra oscuro */
+}
+
+/* Estilos de los campos del formulario */
+.form-fields label {
+    display: block;
+    font-weight: 600;
+    text-align: left;
+    color: #5b3921;
+    margin-bottom: 0.5rem;
+}
+
+
+input {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    border: 1px solid #c4a98b;
+    box-sizing: border-box;
+}
+
+input:focus {
+    outline: none;
+    border-color: #5b3921;
+}
+
+/* Estilos para los mensajes de error */
+.errorlist {
+    color: #e74c3c;
+    font-size: 14px;
+    margin-bottom: 1rem;
+}
+
+/* Estilos para el botón */
+.submit-btn {
+    background-color: #a67b5b; /* Color pastel tierra */
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    width: 100%;
+}
+
+.submit-btn:hover {
+    background-color: #5b3921; /* Color tierra oscuro */
+}
+
+/* Estilo de respuesta móvil */
+@media (max-width: 600px) {
+    .form-container {
+        padding: 1.5rem;
+    }
 }
