@@ -14,6 +14,12 @@
         <form method="POST" action="">
             {% csrf_token %}
             {{ miFormTask.as_p }}
+
+            <select name="proyectos" id="proyectos">
+                {% for proyecto in proyectos %}
+                    <option value="{{proyecto.id}}">{{proyecto.nombre_proyecto}}</option>
+                {% endfor %}
+            </select>
             <button> 
                 Save 
             </button>        

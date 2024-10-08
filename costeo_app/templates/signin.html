@@ -9,14 +9,20 @@
     <link rel="stylesheet" href="{% static 'styles/main.css' %}"> <!-- Asegúrate de enlazar el archivo CSS correctamente -->
 </head>
 <body>
-    {{error}}
-    <form class='form-container' action="{% url 'signin' %}" method='POST'>
-        {% csrf_token %}
-        {{miSignin.as_p}}
-        <button>
-            Ingresar
-        </button>
-        
-    </form>
+    <div class="main-container">
+        {{error}}
+        <form class='form-container' action="{% url 'signin' %}" method='POST'>
+            {% csrf_token %}
+            {{miSignin.as_p}}
+            <button>
+                Ingresar
+            </button>
+            <p></p>
+            <div>
+                <a href="{% url 'signup' %}">No tengo cuenta. Registrarme</a>
+            </div>
+            
+        </form>
+    </div>
 </body>
 </html>

@@ -32,25 +32,36 @@ def proyecto(request):
 
 def tasks(request):
     tareas = list(Task.objects.values())
+    
+
     return render(request, 'tareas/tasks.html', {
-        'mitarea': tareas
+        'mitarea': tareas,
+        
     })
 
 
 def create_task(request):
     if request.method == 'GET':
+
+
+
+        proyectos = Proyecto.objects.all()
         # show interface
         return render(request, 'tareas/create_task.html', {
-            'miFormTask': CreateNewTask()
+            'miFormTask': CreateNewTask(),
+            'proyectos': proyectos,
         })
         # print(request.GET)                                # Esto no genera error, solo imprime el diccionario
     else:
+
+        print(request.POST)
         # Devuelve '' si 'titulo' no está en la solicitud
         titulo = request.POST.get('titulo', '')
         # Devuelve '' si 'descripcion' no está en la solicitud
         descripcion = request.POST.get('descripcion', '')
+        proyectooo = Proyecto.objects.get(id=request.POST.get('proyectos'))
         Task.objects.create(
-            titulo=titulo, descripcion=descripcion, proyecto_id=2)
+            titulo=titulo, descripcion=descripcion, proyecto=proyectooo)
         return redirect('tasks')
 
 
@@ -113,7 +124,7 @@ def signup(request):
 def signout(request):
     logout(request)
     print('Salir de la sesión')
-    return redirect('signup')
+    return redirect('signin')
 
 
 def signin(request):

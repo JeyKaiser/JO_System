@@ -12,22 +12,27 @@
     <link rel="stylesheet" href="{% static 'styles/main.css' %}"> <!-- Asegúrate de enlazar el archivo CSS correctamente -->
 </head>
 
-<body>    
-    <div class="form-container">
-        <h1>Crear cuenta</h1>
-        
-        <form action="{% url 'signup' %}" method="POST">
-            {% csrf_token %}
+<body> 
+    <div class="main-container">
+        <div class="form-container">
+            <h1>Crear cuenta</h1>
+    
+            <a href="{% url "signin" %}">Ya tienes una cuenta?</a>
             
-            <div class="form-fields">
-                {{ miSignup.as_p }}
-            </div>
-            
-            <button type="submit" class="submit-btn">
-                Crear cuenta
-            </button>
-        </form>
-    </div>    
+            <form action="{% url 'signup' %}" method="POST">
+                {% csrf_token %}
+                
+                <div class="form-fields">
+                    {{ miSignup.as_p }}
+                </div>
+                
+                <button type="submit" class="submit-btn">
+                    Crear cuenta
+                </button>
+            </form>
+        </div>    
+    </div>   
+    
 </body>
 
 </html>
