@@ -26,7 +26,16 @@ class Task(models.Model):
     
     def __str__(self):
         return self.titulo
+    
 
+class Telas(models.Model):
+    id = models.AutoField(primary_key=True)
+    cod_tela = models.CharField(max_length=30, null=True, blank=True)
+    descripcion_tela = models.CharField(max_length=30, null=True, blank=True)
+    ancho = models.CharField(max_length=50, null=True, blank=True)
+    cod_color = models.CharField(max_length=30, null=True, blank=True)
+    descripcion_color = models.CharField(max_length=30, null=True, blank=True)
+    
 
 class CustomUserManager(BaseUserManager):
     def create_user(self, email, password=None, **extra_fields):
