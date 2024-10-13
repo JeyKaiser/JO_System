@@ -6,8 +6,7 @@ from .models import CustomUser
 class CreateNewTask(forms.Form):
     titulo = forms.CharField(label="Nombre de tarea", 
                             max_length=200, 
-                            widget=forms.TextInput(attrs={'class':'input'}))
-    
+                            widget=forms.TextInput(attrs={'class':'input'}))    
     descripcion = forms.CharField(label="Descripcion de la tarea", 
                                 widget=forms.Textarea(attrs={'class':'input'}))
 

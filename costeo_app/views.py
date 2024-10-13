@@ -9,87 +9,6 @@ from django.contrib.auth.models import User
 from django.db import transaction
 
 
-# Create your views here.
-def index(request):
-    title = 'Django-Course!!'
-    return render(request, "index.html", {
-        'mititle': title
-    })
-
-
-def about(request):
-    return render(request, "about.html")
-
-# muestra una lista con formato JSON, con los valores de la tabla proyectos
-
-
-def proyecto(request):
-    proyectos = list(Proyecto.objects.values())
-    return render(request, 'proyectos/proyectos.html', {
-        'miproyecto': proyectos
-    })
-
-
-def tasks(request):
-    tareas = list(Task.objects.values())
-    
-
-    return render(request, 'tareas/tasks.html', {
-        'mitarea': tareas,
-        
-    })
-
-
-def create_task(request):
-    if request.method == 'GET':
-
-
-
-        proyectos = Proyecto.objects.all()
-        # show interface
-        return render(request, 'tareas/create_task.html', {
-            'miFormTask': CreateNewTask(),
-            'proyectos': proyectos,
-        })
-        # print(request.GET)                                # Esto no genera error, solo imprime el diccionario
-    else:
-
-        print(request.POST)
-        # Devuelve '' si 'titulo' no está en la solicitud
-        titulo = request.POST.get('titulo', '')
-        # Devuelve '' si 'descripcion' no está en la solicitud
-        descripcion = request.POST.get('descripcion', '')
-        proyectooo = Proyecto.objects.get(id=request.POST.get('proyectos'))
-        Task.objects.create(
-            titulo=titulo, descripcion=descripcion, proyecto=proyectooo)
-        return redirect('tasks')
-
-
-def create_project(request):
-    if request.method == 'GET':
-        # show interface
-        return render(request, 'proyectos/create_project.html', {
-            'miFormProject': CreateNewProject()
-        })
-        # print(request.GET)                                # Esto no genera error, solo imprime el diccionario
-    else:
-        # Devuelve '' si 'titulo' no está en la solicitud
-        nombreProject = request.POST.get('nombre', '')
-        Proyecto.objects.create(nombre_proyecto=nombreProject)
-        return redirect('proyecto')
-
-
-def project_detail(request, id):
-    proyecto = get_object_or_404(Proyecto, id=id)
-    tasks = Task.objects.filter(proyecto_id=id)
-    print(proyecto)
-    print(tasks)
-    return render(request, 'proyectos/detail.html', {
-        'detailProject': proyecto,
-        'detailTask': tasks
-    })
-
-
 def signup(request):
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
@@ -97,18 +16,16 @@ def signup(request):
         if request.POST['password1'] == request.POST['password2']:            
             try:
                 with transaction.atomic(): 
-                # Crear un nuevo usuario utilizando CustomUser
                     user = CustomUser.objects.create_user(
                     username=request.POST['username'],
                     password=request.POST['password1'],
                     email=request.POST['email']  # Agregar el email
                 )
-                user.save()
-                # Iniciar sesión automáticamente después del registro
+                user.save()                # Iniciar sesión automáticamente después del registro
                 login(request, user)
                 messages.success(request, 'Cuenta creada con éxito.')
                 print('Cuenta creada con éxito.')
-                return redirect('signin')  # Redirigir a la página de inicio
+                return redirect('signin')  
             except Exception as e:
                 print(f'Error: {e}')                
                 return render(request, 'signup.html', {'miSignup': form})
@@ -119,12 +36,6 @@ def signup(request):
     else:
         form = CustomUserCreationForm(request.POST)
         return render(request, 'signup.html', {'miSignup': form})
-    
-
-def signout(request):
-    logout(request)
-    print('Salir de la sesión')
-    return redirect('signin')
 
 
 def signin(request):
@@ -143,3 +54,79 @@ def signin(request):
         else:
             login(request, user)
             return redirect('index')
+        
+    
+def index(request):
+    title = 'Django-Course!!'
+    return render(request, "index.html", {
+        'mititle': title
+    })
+        
+
+def proyecto(request):
+    proyectos = list(Proyecto.objects.values())
+    return render(request, 'proyectos/proyectos.html', {
+        'miproyecto': proyectos
+    })
+
+def project_detail(request, id):
+    proyecto = get_object_or_404(Proyecto, id=id)
+    tasks = Task.objects.filter(proyecto_id=id)
+    print(proyecto)
+    print(tasks)
+    return render(request, 'proyectos/detail.html', {
+        'detailProject': proyecto,
+        'detailTask': tasks
+    })
+
+
+def tasks(request):
+    tareas = list(Task.objects.values()) 
+    return render(request, 'tareas/tasks.html', {
+        'mitarea': tareas,
+        
+    })
+
+
+def create_task(request):
+    if request.method == 'GET':
+        proyectos = Proyecto.objects.all()
+        return render(request, 'tareas/create_task.html', {
+            'miFormTask': CreateNewTask(),
+            'proyectos': proyectos,
+        })
+        # print(request.GET)                                # Esto no genera error, solo imprime el diccionario
+    else:
+        print(request.POST)                             # Devuelve '' si 'titulo' no está en la solicitud
+        titulo = request.POST.get('titulo', '')         # Devuelve '' si 'descripcion' no está en la solicitud
+        descripcion = request.POST.get('descripcion', '')
+        proyecto = Proyecto.objects.get(id=request.POST.get('proyectos'))
+        Task.objects.create(
+            titulo=titulo, descripcion=descripcion, proyecto=proyecto)
+        return redirect('tasks')
+
+
+def create_project(request):
+    if request.method == 'GET':
+        # show interface
+        return render(request, 'proyectos/create_project.html', {
+            'miFormProject': CreateNewProject()
+        })
+        # print(request.GET)                                  # Esto no genera error, solo imprime el diccionario
+    else:       
+        nombreProject = request.POST.get('nombre', '')        # Devuelve '' si 'titulo' no está en la solicitud
+        Proyecto.objects.create(nombre_proyecto = nombreProject)
+        return redirect('proyecto')
+
+
+
+def about(request):
+    return render(request, "about.html")
+
+
+def signout(request):
+    logout(request)
+    print('Salir de la sesión')
+    return redirect('signin')
+
+

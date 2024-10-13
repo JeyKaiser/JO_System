@@ -4,30 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tareas</title>
+    {% extends "layouts/base.html" %}
+        
 </head>
 <body>
-    {% extends "layouts/base.html" %}
+    
     {% block content %}
         <h1>Mis Tareas</h1>
+        <ul>
+            <li><a href= "{% url 'create_task' %}" >      Crear nueva tarea</a></li>
+        </ul>
     
         <!--este es un comentario de html que si se ve-->
         {% for tareas in mitarea %}
-        <div>            
-            {# este es un comentario en jinja, no se ve#}
-            <h2>{% if tareas.done == False %} 
+        <div>
+            <article class="card">
+                {# este es un comentario en jinja, no se ve#}
+                <h2>{% if tareas.done == False %} 
                     🕑 
                 {% else %}
                     ✅ 
                 {% endif %} {{ tareas.titulo }}
-            </h2>
+                </h2>
 
-            <h2>{{ tareas.descripcion }}</h2>
-            <h3>Nombre proyecto: {{ tareas.proyecto_id }}</h3>
-            
+                <h2>{{ tareas.descripcion }}</h2>
+                <h3>Nombre proyecto: {{ tareas.proyecto_id }}</h3>
+            </article>  
         </div>
-    {% endfor %}
-    
+        {% endfor %}    
     {% endblock content %}
-
+    
 </body>
 </html>
